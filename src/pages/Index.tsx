@@ -3,6 +3,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { TopNav } from "@/components/TopNav";
 import { BattleArena } from "@/components/BattleArena";
 import { InputBar } from "@/components/InputBar";
+import { DebateTimeline } from "@/components/DebateTimeline";
 import { useDebate } from "@/hooks/useDebate";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
@@ -16,6 +17,7 @@ const Index = () => {
     setPrompt,
     startRound,
     getRotationText,
+    getCurrentModelRoles,
   } = useDebate();
 
   const handleStartRound = (input: string) => {
@@ -43,16 +45,22 @@ const Index = () => {
         </Sheet>
 
         {/* Main Content */}
-        <div className="flex flex-1 flex-col overflow-hidden">
-          <div className="flex-1 overflow-hidden">
-            <BattleArena prompt={prompt} rounds={rounds} />
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex flex-1 flex-col overflow-hidden">
+            <div className="flex-1 overflow-hidden">
+              <BattleArena prompt={prompt} rounds={rounds} />
+            </div>
+            <InputBar
+              currentRound={currentRound}
+              maxRounds={maxRounds}
+              rotationText={getRotationText()}
+              onStartRound={handleStartRound}
+              modelRoles={getCurrentModelRoles()}
+            />
           </div>
-          <InputBar
-            currentRound={currentRound}
-            maxRounds={maxRounds}
-            rotationText={getRotationText()}
-            onStartRound={handleStartRound}
-          />
+
+          {/* Timeline - Desktop Only */}
+          <DebateTimeline rounds={rounds} currentRound={currentRound} />
         </div>
       </div>
     </div>

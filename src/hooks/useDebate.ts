@@ -74,6 +74,14 @@ export function useDebate() {
     return rotation.join(" → ");
   };
 
+  const getCurrentModelRoles = () => {
+    const models: ModelType[] = ["Claude", "Grok", "GPT"];
+    return models.map((model) => ({
+      model,
+      role: getRoleForModel(currentRound, model),
+    }));
+  };
+
   return {
     rounds,
     currentRound,
@@ -83,5 +91,6 @@ export function useDebate() {
     startRound,
     getRotationText,
     getRoleForModel,
+    getCurrentModelRoles,
   };
 }
