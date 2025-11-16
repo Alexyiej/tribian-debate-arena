@@ -1,11 +1,59 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Sidebar } from "@/components/Sidebar";
+import { TopNav } from "@/components/TopNav";
+import { BattleArena } from "@/components/BattleArena";
+import { InputBar } from "@/components/InputBar";
+import { useDebate } from "@/hooks/useDebate";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const Index = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const {
+    rounds,
+    currentRound,
+    maxRounds,
+    prompt,
+    setPrompt,
+    startRound,
+    getRotationText,
+  } = useDebate();
+
+  const handleStartRound = (input: string) => {
+    if (currentRound === 1 && input.trim()) {
+      setPrompt(input);
+    }
+    startRound(input);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="flex h-screen w-full flex-col bg-background">
+      <TopNav onMenuClick={() => setSidebarOpen(true)} />
+
+      <div className="flex flex-1 overflow-hidden">
+        {/* Desktop Sidebar */}
+        <aside className="hidden lg:block w-80 border-r border-sidebar-border">
+          <Sidebar />
+        </aside>
+
+        {/* Mobile Sidebar */}
+        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+          <SheetContent side="left" className="w-80 p-0">
+            <Sidebar />
+          </SheetContent>
+        </Sheet>
+
+        {/* Main Content */}
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <div className="flex-1 overflow-hidden">
+            <BattleArena prompt={prompt} rounds={rounds} />
+          </div>
+          <InputBar
+            currentRound={currentRound}
+            maxRounds={maxRounds}
+            rotationText={getRotationText()}
+            onStartRound={handleStartRound}
+          />
+        </div>
       </div>
     </div>
   );
