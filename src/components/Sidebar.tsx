@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState, useEffect } from "react";
+import { SettingsDialog } from "./SettingsDialog";
 
 const mockDebates = [
   { id: 1, title: "Is UBI economically sustainable?", date: "Today" },
@@ -15,6 +16,7 @@ const mockDebates = [
 
 export function Sidebar() {
   const [isDark, setIsDark] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark");
@@ -81,7 +83,10 @@ export function Sidebar() {
           {isDark ? "Light" : "Dark"} Mode
         </Button>
 
-        <div className="flex items-center gap-2 rounded-xl p-2 hover:bg-sidebar-accent cursor-pointer">
+        <div 
+          className="flex items-center gap-2 rounded-xl p-2 hover:bg-sidebar-accent cursor-pointer"
+          onClick={() => setSettingsOpen(true)}
+        >
           <Avatar className="h-8 w-8">
             <AvatarFallback className="bg-primary text-primary-foreground text-xs">
               U
@@ -95,6 +100,8 @@ export function Sidebar() {
           </div>
         </div>
       </div>
+
+      <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
     </div>
   );
 }
