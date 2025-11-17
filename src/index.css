@@ -37,6 +37,8 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 220 90% 56%;
+    --contrast: 220 70% 20%;
+    --contrast-foreground: 0 0% 100%;
   }
 
   .dark {
@@ -72,6 +74,8 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 220 90% 56%;
+    --contrast: 220 70% 85%;
+    --contrast-foreground: 220 70% 15%;
   }
 }
 

@@ -1,4 +1,4 @@
-import { Plus, Search, Moon, Sun } from "lucide-react";
+import { MessageSquarePlus, Search, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -32,7 +32,7 @@ export function Sidebar() {
       {/* New Debate Button */}
       <div className="p-3">
         <Button className="w-full justify-start gap-2" variant="contrast">
-          <Plus className="h-4 w-4" />
+          <MessageSquarePlus className="h-4 w-4" />
           New Debate
         </Button>
       </div>
