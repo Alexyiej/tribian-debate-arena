@@ -31,7 +31,7 @@ export function Sidebar() {
     <div className="flex h-full flex-col border-r border-sidebar-border bg-sidebar">
       {/* New Debate Button */}
       <div className="p-3">
-        <Button className="w-full justify-start gap-2" variant="contrast">
+        <Button className="w-full justify-start gap-2" variant="secondary">
           <MessageSquarePlus className="h-4 w-4" />
           New Debate
         </Button>
