@@ -9,6 +9,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [inputMode, setInputMode] = useState<"single" | "triple">("single");
   const {
     rounds,
     currentRound,
@@ -56,6 +57,8 @@ const Index = () => {
               rotationText={getRotationText()}
               onStartRound={handleStartRound}
               modelRoles={getCurrentModelRoles()}
+              mode={inputMode}
+              onModeChange={setInputMode}
             />
           </div>
 
