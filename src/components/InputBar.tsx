@@ -71,6 +71,11 @@ export function InputBar({
     setIsGenerating(prev => ({ ...prev, [model]: false }));
   };
 
+  const handleModeChange = (newMode: "single" | "triple") => {
+    console.log("Mode changing from", mode, "to", newMode);
+    onModeChange?.(newMode);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -144,7 +149,7 @@ export function InputBar({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onModeChange?.("triple")}
+              onClick={() => handleModeChange("triple")}
               className="text-xs text-muted-foreground hover:text-foreground"
             >
               Switch to Triple Mode
@@ -240,7 +245,7 @@ export function InputBar({
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => onModeChange?.("single")}
+                onClick={() => handleModeChange("single")}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
                 Switch to Single Mode
